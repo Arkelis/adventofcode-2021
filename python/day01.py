@@ -1,4 +1,4 @@
-def get_input_ints():
+def get_measurements():
     with open("inputs/day01.txt") as f:
         return [int(x) for x in f.readlines()]
 
@@ -8,14 +8,15 @@ def compare_pairs(L):
 
 
 def part1():
-    return compare_pairs(get_input_ints())
+    return compare_pairs(get_measurements())
 
 
 def part2():
-    ints = get_input_ints()
-    sums = [sum(ints[i:i+3]) for i in range(len(ints)-2)]
+    measurements = get_measurements()
+    sums = [sum(measurements[i:i+3]) for i in range(len(measurements)-2)]
     return compare_pairs(sums)
 
 
-print(part1())
-print(part2())
+if __name__ == "__main__":
+    print(part1())
+    print(part2())

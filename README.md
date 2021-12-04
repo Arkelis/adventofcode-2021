@@ -2,7 +2,7 @@
 
 ## Python
 
-Using Python 3.9:
+Using Python 3.10:
 
 ```
 python python/dayN.py
