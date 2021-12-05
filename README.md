@@ -7,3 +7,11 @@ Using Python 3.10:
 ```
 python python/dayN.py
 ```
+
+## OCaml
+
+You will need `Core` library installed. Using Dune:
+
+```
+dune exec ocaml/dayN.exec
+```
