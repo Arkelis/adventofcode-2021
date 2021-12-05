@@ -13,5 +13,5 @@ python python/dayN.py
 You will need `Core` library installed. Using Dune:
 
 ```
-dune exec ocaml/dayN.exec
+dune exec ocaml/dayN.exe
 ```
