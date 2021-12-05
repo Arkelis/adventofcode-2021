@@ -37,16 +37,15 @@ let part2 =
     | "up" -> a - v
     | "down" -> a + v
     | _ -> a in
-  let rec travel commands position depth aim =
-    match commands with
-      | Some (command, value) :: others
-        -> travel others
-          (compute_position position command value)
-          (compute_depth depth aim command value)
-          (compute_aim aim command value)
-      | None :: others -> travel others position depth aim
-      | [] -> position * depth in
-    travel commands 0 0 0
+  let rec travel commands position depth aim = match commands with
+    | Some (command, value) :: others
+      -> travel others
+        (compute_position position command value)
+        (compute_depth depth aim command value)
+        (compute_aim aim command value)
+    | None :: others -> travel others position depth aim
+    | [] -> position * depth in
+  travel commands 0 0 0
 
 let _ =
   print_endline (string_of_int part1);
