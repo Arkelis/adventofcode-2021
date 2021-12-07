@@ -11,7 +11,7 @@ def count_bits(bins):
     return counter
 
 
-def compute_rates(counter):
+def compute_rates(bins, counter):
     threshold = len(bins) // 2 + 1
     gamma = "".join(str(int(val >= threshold)) for val in counter)
     epsilon = "".join(str(int(not int(val))) for val in gamma)
@@ -21,7 +21,7 @@ def compute_rates(counter):
 def part1():
     bins = get_bins()
     counter = count_bits(bins)
-    gamma, epsilon = compute_rates(counter)
+    gamma, epsilon = compute_rates(bins, counter)
     return gamma * epsilon
 
 
