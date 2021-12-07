@@ -15,3 +15,11 @@ You will need `Core` library installed. Using Dune:
 ```
 dune exec ocaml/dayN.exe
 ```
+
+## Run both languages for a given day
+
+```
+./run DAY
+```
+
+where `DAY` is an integer.
