@@ -1,5 +1,8 @@
 open Core
 
+let ceil_half n = 
+  int_of_float @@ Float.round_up @@ (float_of_int n) /. 2.  
+  
 let int_of_bit = function
   | '1' -> 1
   | _ -> 0
@@ -49,23 +52,24 @@ let part1 =
              index
              (inc_to_counter (String.get binary index) count) in
     
-    let rec get_last predicate binaries index =
-      let threshold = List.length binaries / 2
-      and count = count_ones binaries index 0 in
-      match binaries with
-      | [result] -> result
-      | more -> get_last 
+    let rec get_last predicate binaries index = match binaries with
+    | [result] -> result
+    | more -> begin 
+        let threshold = ceil_half (List.length binaries)
+        and count = count_ones binaries index 0 in
+        get_last 
           predicate 
           (List.filter ~f:(predicate threshold count index) more)
-          (index + 1) in
+          (index + 1)
+    end in
 
     let filter_most_common threshold count index binary =
       let char = String.get binary index in
-      if count >= threshold then (Char.equal char '1') else (Char.equal char '0') in
+      Char.equal char @@ if count >= threshold then '1' else '0' in
     let last_with_most_commons = get_last filter_most_common bins 0
     and filter_least_common threshold count index binary =
       let char = String.get binary index in
-      if count >= threshold then (Char.equal char '0') else (Char.equal char '1') in
+      Char.equal char @@ if count >= threshold then '0' else '1' in
     let last_with_least_commons =  get_last filter_least_common bins 0 in
   
     (last_with_most_commons |> int_of_bin) * (last_with_least_commons |> int_of_bin)
